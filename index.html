@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta
+      name="viewport"
+      content="width=device-width, viewport-fit=cover, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <!-- <meta name="apple-mobile-web-app-capable" content="yes" /> -->
+    <!-- <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> -->
+    <meta name="theme-color" content="???" />
+    <title>Bitmail</title>
+    <!-- <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('DOMContentLoaded', () => {
+          navigator.serviceWorker.register('/inject-sw.js', { scope: '/' })
+        })
+      }
+    </script> -->
+  </head>
+  <body>
+    <script>
+      const selectedTheme = localStorage.getItem('theme')
+      const themeColors = {
+        light: 'rgb(255, 255, 255)',
+        dark: 'rgb(47, 48, 49)',
+      }
+      if (selectedTheme) {
+        document.body.classList.add(selectedTheme)
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', themeColors[selectedTheme])
+      } else {
+        localStorage.setItem('theme', 'light')
+        document.body.classList.add('light')
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', themeColors.light)
+      }
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
